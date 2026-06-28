@@ -1,0 +1,11 @@
+/* Gradient-clipped text (§5). Always purple -> pink, 135deg. */
+
+.gradient-text {
+  background-image: var(--brand-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  /* keep a fallback color in case clipping fails */
+  background-color: var(--gradient-2);
+}

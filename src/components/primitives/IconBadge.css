@@ -1,0 +1,22 @@
+/* Gradient icon badge (§6). The only allowed solid gradient fill. */
+
+.icon-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-image: var(--brand-gradient);
+  color: var(--text-primary);
+  flex: none;
+}
+
+.icon-badge--md {
+  width: 34px;
+  height: 34px;
+  border-radius: var(--r-chip);
+}
+
+.icon-badge--lg {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+}

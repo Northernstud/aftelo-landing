@@ -1,0 +1,22 @@
+/* Section eyebrow: micro uppercase label with a gradient tick. */
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  font-weight: var(--w-medium);
+  text-transform: uppercase;
+  letter-spacing: 1.8px;
+}
+
+.eyebrow__tick {
+  width: 22px;
+  height: 1px;
+  background-image: var(--brand-gradient);
+  flex: none;
+}
+
+.eyebrow__label {
+  display: inline-block;
+}

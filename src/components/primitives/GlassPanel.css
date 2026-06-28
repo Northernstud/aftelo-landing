@@ -1,0 +1,43 @@
+/* Frosted-glass surface presets (§4). */
+
+.glass {
+  position: relative;
+  background-color: var(--glass-fill-card);
+  border: 1px solid var(--glass-border-card);
+  border-radius: var(--r-card);
+  box-shadow: var(--shadow-card);
+  -webkit-backdrop-filter: blur(var(--blur-card));
+  backdrop-filter: blur(var(--blur-card));
+}
+
+.glass--card {
+  border-radius: var(--r-card);
+}
+
+.glass--nav {
+  background-color: var(--glass-fill-nav);
+  border-color: var(--glass-border-nav);
+  border-radius: var(--r-nav);
+  -webkit-backdrop-filter: blur(var(--blur-nav));
+  backdrop-filter: blur(var(--blur-nav));
+}
+
+.glass--light {
+  background-color: var(--glass-fill-light);
+  border-color: var(--glass-border-light);
+  border-radius: var(--r-panel);
+  -webkit-backdrop-filter: blur(var(--blur-light));
+  backdrop-filter: blur(var(--blur-light));
+}
+
+.glass--glow {
+  box-shadow: var(--shadow-card), var(--shadow-active-glow);
+}
+
+/* Graceful fallback where backdrop-filter is unsupported:
+   lean on the solid surface color so panels stay legible. */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .glass {
+    background-color: color-mix(in srgb, var(--surface-deep) 86%, transparent);
+  }
+}

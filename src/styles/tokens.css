@@ -1,0 +1,89 @@
+/* ============================================================
+   EchoMe — Design Tokens
+   Single source of truth. Every value here is transcribed
+   directly from the brand brief (ECHOME_APP_DESIGN.md).
+   Do not introduce colors/fonts/effects that aren't defined here.
+   ============================================================ */
+
+:root {
+  /* --- Brand accents (the only vivid colors) --- */
+  --gradient-1: #ff005e; /* vivid magenta-pink */
+  --gradient-2: #c953ff; /* vivid violet-purple */
+
+  /* Brand gradient — ALWAYS purple -> pink, top-left -> bottom-right. */
+  --brand-gradient: linear-gradient(135deg, #c953ff 0%, #ff005e 100%);
+
+  /* --- Backgrounds / surfaces --- */
+  --scaffold-dark: #07070c; /* deepest backdrop, the void */
+  --surface-deep: #12121c; /* solid panel fill when blur isn't possible */
+
+  /* Page background gradient (the "void with glow", layer 1) */
+  --page-gradient: linear-gradient(135deg, #14101f 0%, #07070c 50%, #100818 100%);
+
+  /* --- Text --- */
+  --text-primary: #f3f3f8; /* soft off-white, never pure white */
+  --text-secondary: #9b9ba8;
+  --text-muted: #6e6e7a;
+
+  /* --- Glass --- */
+  --glass-fill-card: rgba(255, 255, 255, 0.06);
+  --glass-fill-nav: rgba(255, 255, 255, 0.07);
+  --glass-fill-light: rgba(255, 255, 255, 0.05);
+  --glass-border-card: rgba(255, 255, 255, 0.16);
+  --glass-border-nav: rgba(255, 255, 255, 0.18);
+  --glass-border-light: rgba(255, 255, 255, 0.12);
+  --glass-border-interactive: rgba(255, 255, 255, 0.3);
+
+  --blur-card: 24px;
+  --blur-nav: 32px;
+  --blur-light: 18px;
+
+  /* --- Glow colors (ambient blooms only) --- */
+  --glow-purple-strong: rgba(201, 83, 255, 0.28);
+  --glow-purple-faint: rgba(201, 83, 255, 0.08);
+  --glow-pink: rgba(255, 0, 94, 0.2);
+
+  /* --- Danger (rare) --- */
+  --danger: #ff6b7a;
+
+  /* --- Shadows --- */
+  --shadow-card: 0 14px 28px -6px rgba(0, 0, 0, 0.45);
+  --shadow-active-glow: 0 0 16px rgba(255, 0, 94, 0.35), 0 0 10px rgba(201, 83, 255, 0.2);
+  --shadow-gradient-btn: 0 4px 14px rgba(255, 0, 94, 0.4);
+
+  /* --- Radii --- */
+  --r-chip: 10px;
+  --r-inline: 12px;
+  --r-input: 14px;
+  --r-card-sm: 16px;
+  --r-panel: 20px;
+  --r-card: 22px;
+  --r-nav: 26px;
+  --r-hero: 28px;
+
+  /* --- Typography --- */
+  --font-mono: "Overpass Mono", ui-monospace, "SFMono-Regular", "Cascadia Mono",
+    "Roboto Mono", Menlo, Consolas, monospace;
+
+  --w-regular: 500;
+  --w-medium: 600;
+  --w-title: 700;
+  --w-hero: 800;
+
+  /* --- Motion tokens --- */
+  --t-micro: 120ms;
+  --t-fast: 200ms;
+  --t-standard: 300ms;
+  --t-slow: 420ms;
+  --t-celebrate: 650ms;
+  --t-stagger: 60ms;
+
+  --ease-out-cubic: cubic-bezier(0.215, 0.61, 0.355, 1);
+  --ease-in-out: cubic-bezier(0.645, 0.045, 0.355, 1);
+
+  /* --- Layout --- */
+  --content-max: 1140px;
+  --content-narrow: 760px;
+  --gutter: 24px;
+  --section-gap: clamp(80px, 12vw, 140px);
+}

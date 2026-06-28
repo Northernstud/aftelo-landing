@@ -1,0 +1,11 @@
+.echo-scene {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.echo-scene__canvas {
+  width: 100% !important;
+  height: 100% !important;
+}

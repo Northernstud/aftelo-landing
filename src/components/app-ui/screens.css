@@ -1,0 +1,290 @@
+/* Recreated app UI. App-scale type; brand tokens throughout. */
+
+.appx {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+.appx__status {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 9px 22px 4px;
+  font-size: 10px;
+  font-weight: var(--w-title);
+  color: var(--text-primary);
+}
+.appx__status-icons {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.appx__status-icons i,
+.appx__status-icons b {
+  display: inline-block;
+  width: 12px;
+  height: 9px;
+  border-radius: 2px;
+  background: var(--text-secondary);
+  opacity: 0.7;
+}
+.appx__status-icons b {
+  width: 18px;
+}
+
+.appx__body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 14px 16px 10px;
+  min-height: 0;
+}
+
+.appx__head {
+  padding-top: 6px;
+}
+.appx__head--chat {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.appx__eyebrow {
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-muted);
+  font-weight: var(--w-medium);
+}
+.appx__eyebrow--live {
+  color: transparent;
+  background-image: var(--brand-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.appx__title {
+  font-size: 20px;
+  font-weight: var(--w-hero);
+  color: var(--text-primary);
+  letter-spacing: -0.3px;
+  margin-top: 2px;
+}
+.appx__title--sm {
+  font-size: 15px;
+}
+
+.appx__avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  flex: none;
+  background-image: var(--brand-gradient);
+  box-shadow: var(--shadow-active-glow);
+}
+
+/* light glass panel used inside the app */
+.appx__panel {
+  border: 1px solid var(--glass-border-light);
+  background-color: rgba(255, 255, 255, 0.06);
+  border-radius: var(--r-card-sm);
+  padding: 12px;
+}
+
+.appx__entry-time {
+  font-size: 9px;
+  color: var(--text-muted);
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+}
+.appx__entry-text {
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--text-primary);
+}
+
+.appx__prompt {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+.appx__prompt p {
+  font-size: 11px;
+  line-height: 1.45;
+  color: var(--text-secondary);
+}
+.appx__prompt b {
+  color: var(--text-primary);
+  font-weight: var(--w-title);
+}
+.appx__dot {
+  width: 8px;
+  height: 8px;
+  margin-top: 3px;
+  border-radius: 50%;
+  flex: none;
+  background-image: var(--brand-gradient);
+  box-shadow: var(--shadow-active-glow);
+}
+
+.appx__section-label {
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+.appx__chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.appx__chip {
+  font-size: 10px;
+  font-weight: var(--w-medium);
+  padding: 6px 10px;
+  border-radius: var(--r-chip);
+  color: var(--text-secondary);
+  border: 1px solid var(--glass-border-light);
+  background-color: rgba(255, 255, 255, 0.04);
+}
+.appx__chip--on {
+  color: var(--text-primary);
+  border-color: color-mix(in srgb, var(--gradient-1) 55%, transparent);
+  background-color: rgba(255, 0, 94, 0.08);
+}
+
+.appx__goals {
+  margin-top: 2px;
+}
+
+/* chat thread */
+.appx__thread {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  justify-content: flex-end;
+  min-height: 0;
+}
+.appx__msg {
+  max-width: 82%;
+  font-size: 11.5px;
+  line-height: 1.45;
+  padding: 9px 11px;
+  border-radius: 14px;
+}
+.appx__msg--in {
+  align-self: flex-start;
+  color: var(--text-primary);
+  background-color: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--glass-border-light);
+  border-bottom-left-radius: 5px;
+}
+.appx__msg--out {
+  align-self: flex-end;
+  color: var(--text-primary);
+  background-image: var(--brand-gradient);
+  border-bottom-right-radius: 5px;
+}
+.appx__typing {
+  align-self: flex-start;
+  display: inline-flex;
+  gap: 4px;
+  padding: 9px 11px;
+  border-radius: 14px;
+  background-color: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--glass-border-light);
+}
+.appx__typing span {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--text-secondary);
+  animation: appx-typing 1.2s var(--ease-in-out) infinite;
+}
+.appx__typing span:nth-child(2) {
+  animation-delay: 0.15s;
+}
+.appx__typing span:nth-child(3) {
+  animation-delay: 0.3s;
+}
+@keyframes appx-typing {
+  0%,
+  60%,
+  100% {
+    opacity: 0.3;
+    transform: translateY(0);
+  }
+  30% {
+    opacity: 1;
+    transform: translateY(-2px);
+  }
+}
+
+/* composer */
+.appx__composer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: var(--r-input);
+  background-color: var(--surface-deep);
+  border: 1px solid var(--glass-border-card);
+}
+.appx__composer-text {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+.appx__send,
+.appx__mic {
+  width: 24px;
+  height: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  font-size: 12px;
+  color: var(--text-primary);
+  background-image: var(--brand-gradient);
+  flex: none;
+}
+
+/* tab bar (solid surface, not glass) */
+.appx__tabs {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 10px 14px 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  background-color: rgba(18, 18, 28, 0.7);
+}
+.appx__tab {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  font-size: 9px;
+  font-weight: var(--w-medium);
+  letter-spacing: 0.4px;
+  color: var(--text-muted);
+}
+.appx__tab-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--text-muted);
+}
+.appx__tab.is-active {
+  color: var(--text-primary);
+}
+.appx__tab.is-active .appx__tab-dot {
+  background-image: var(--brand-gradient);
+  box-shadow: var(--shadow-active-glow);
+}

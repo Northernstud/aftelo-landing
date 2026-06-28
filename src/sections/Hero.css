@@ -1,0 +1,178 @@
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  padding-top: 132px;
+  padding-bottom: 96px;
+  overflow: hidden;
+}
+
+.hero__inner {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  align-items: center;
+  gap: clamp(24px, 5vw, 72px);
+  width: 100%;
+}
+
+.hero__copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+  max-width: 600px;
+}
+
+.hero__title {
+  font-size: clamp(40px, 6.4vw, 72px);
+  font-weight: var(--w-hero);
+  line-height: 1.04;
+  letter-spacing: -1.5px;
+  color: var(--text-primary);
+}
+
+.hero__sub {
+  max-width: 50ch;
+  font-size: clamp(15px, 1.7vw, 18px);
+  font-weight: var(--w-regular);
+  line-height: 1.55;
+  color: var(--text-secondary);
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 4px;
+}
+
+.hero__note {
+  font-size: 11px;
+  font-weight: var(--w-medium);
+  letter-spacing: 0.6px;
+  color: var(--text-muted);
+}
+
+/* --- the orb stage --- */
+.hero__visual {
+  position: relative;
+  align-self: stretch;
+  min-height: 460px;
+  height: 100%;
+}
+
+.hero__visual-fallback {
+  position: absolute;
+  inset: 0;
+}
+
+/* one-time load sequence (fade + slide up, calm ease-out) */
+.hero__line {
+  opacity: 0;
+  transform: translateY(16px);
+  animation: hero-rise var(--t-celebrate) var(--ease-out-cubic) forwards;
+}
+
+@keyframes hero-rise {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* scroll cue */
+.hero__scroll {
+  position: absolute;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  opacity: 0;
+  animation: hero-rise var(--t-celebrate) var(--ease-out-cubic) 800ms forwards;
+}
+.hero__scroll-label {
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--text-muted);
+}
+.hero__scroll-line {
+  width: 1px;
+  height: 38px;
+  background: linear-gradient(to bottom, var(--text-muted), transparent);
+  position: relative;
+  overflow: hidden;
+}
+.hero__scroll-line::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background: linear-gradient(to bottom, transparent, var(--gradient-1));
+  animation: scroll-fall 1.8s var(--ease-in-out) infinite;
+}
+@keyframes scroll-fall {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(300%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__line,
+  .hero__scroll {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+  .hero__scroll-line::after {
+    animation: none;
+  }
+}
+
+/* --- responsive --- */
+@media (max-width: 920px) {
+  .hero {
+    padding-top: 120px;
+  }
+  .hero__inner {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    text-align: left;
+  }
+  .hero__copy {
+    order: 2;
+    max-width: 640px;
+  }
+  .hero__visual {
+    order: 1;
+    min-height: 320px;
+    width: 100%;
+    max-width: 420px;
+    margin-inline: auto;
+  }
+  .hero__scroll {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero__visual {
+    min-height: 260px;
+  }
+  .hero__actions .btn {
+    flex: 1 1 auto;
+    justify-content: center;
+  }
+}

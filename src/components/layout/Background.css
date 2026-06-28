@@ -1,0 +1,93 @@
+/* Ambient glow blooms (§3). Fixed-size, heavily blurred radial blooms. */
+
+.bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.bg__glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 1;
+}
+
+/* glow color/intensity presets */
+.bg__glow--purple-strong {
+  background: radial-gradient(circle, var(--glow-purple-strong) 0%, transparent 70%);
+}
+.bg__glow--purple-faint {
+  background: radial-gradient(circle, var(--glow-purple-faint) 0%, transparent 70%);
+}
+.bg__glow--pink {
+  background: radial-gradient(circle, var(--glow-pink) 0%, transparent 70%);
+}
+
+/* hero cluster */
+.bg__glow--hero-tr {
+  width: 460px;
+  height: 460px;
+  top: -120px;
+  right: -80px;
+}
+.bg__glow--hero-bl {
+  width: 420px;
+  height: 420px;
+  top: 38vh;
+  left: -120px;
+}
+.bg__glow--hero-ml {
+  width: 260px;
+  height: 260px;
+  top: 60vh;
+  left: 30vw;
+}
+
+/* mid-page (~ features / showcase) */
+.bg__glow--mid-l {
+  width: 420px;
+  height: 420px;
+  top: 130vh;
+  left: -140px;
+}
+.bg__glow--mid-r {
+  width: 380px;
+  height: 380px;
+  top: 175vh;
+  right: -120px;
+}
+
+/* lower page (~ echo / stats / cta) */
+.bg__glow--low-r {
+  width: 360px;
+  height: 360px;
+  top: 250vh;
+  right: -60px;
+}
+.bg__glow--low-l {
+  width: 380px;
+  height: 380px;
+  top: 320vh;
+  left: -120px;
+}
+
+.bg__grain {
+  position: absolute;
+  inset: 0;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+@media (max-width: 640px) {
+  .bg__glow {
+    filter: blur(70px);
+  }
+  .bg__glow--hero-tr,
+  .bg__glow--hero-bl {
+    width: 320px;
+    height: 320px;
+  }
+}
