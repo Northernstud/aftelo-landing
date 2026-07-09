@@ -1,9 +1,9 @@
 {
-  "name": "echome-landing",
+  "name": "aftelo-landing",
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "description": "Landing page for EchoMe — a mental-wellness journaling app with an AI companion.",
+  "description": "Landing page for Aftelo — a mental-wellness journaling app with an AI companion.",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",

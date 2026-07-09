@@ -1,6 +1,6 @@
 # Future Plans
 
-A running list of things to add to the EchoMe landing page once the supporting
+A running list of things to add to the Aftelo landing page once the supporting
 assets, links, and decisions are ready. Nothing here is built yet — it's the
 backlog. Items are grouped by theme and roughly ordered by priority within each.
 
@@ -48,7 +48,7 @@ backlog. Items are grouped by theme and roughly ordered by priority within each.
 - [ ] **FAQ section.** Accordion answering privacy, pricing, "is it therapy?", data
       ownership, offline use, etc. (use `--surface-deep` for the expanded panels, not
       nested glass).
-- [ ] **Pricing / plans.** If EchoMe monetizes, a restrained pricing section — glass
+- [ ] **Pricing / plans.** If Aftelo monetizes, a restrained pricing section — glass
       tiles, one highlighted plan with the active-glow shadow.
 - [ ] **"The Echo difference" deep-dive.** A longer scroll-driven explainer of how
       Echo grounds replies in your own entries (could reuse the phone mockups).
@@ -82,7 +82,7 @@ backlog. Items are grouped by theme and roughly ordered by priority within each.
       visual-regression snapshots (the screenshot tooling was prototyped already).
 - [ ] **i18n readiness.** Since all copy is centralized in `content/site.ts`,
       extracting strings into locale files later is low-effort — plan for it if
-      EchoMe goes multi-language.
+      Aftelo goes multi-language.
 - [ ] **Error/empty states.** If forms get added (waitlist, "text me the link"),
       give them on-brand validation and success states.
 

@@ -44,7 +44,7 @@ export type IconName =
 
 export const site = {
   brand: {
-    name: "EchoMe",
+    name: "Aftelo",
     /** Used in the nav + footer mark. */
     tagline: "A journal that listens back.",
   },
@@ -64,8 +64,8 @@ export const site = {
     /** `accent` words are rendered as gradient text. */
     headlineLead: "Journal with your",
     headlineAccent: "future self.",
-    sub: "EchoMe reads what you write — your entries, your goals, your patterns — and talks it through with you. A calm voice grounded in your own words, like a conversation with a wiser version of you.",
-    primaryCta: { label: "Download EchoMe", href: "#download" },
+    sub: "Aftelo reads what you write — your entries, your goals, your patterns — and talks it through with you. A calm voice grounded in your own words, like a conversation with a wiser version of you.",
+    primaryCta: { label: "Download Aftelo", href: "#download" },
     secondaryCta: { label: "See how it works", href: "#how" },
     note: "Free to start · iOS & Android · Your entries stay yours",
   },
@@ -180,7 +180,7 @@ export const site = {
     title: "Your future self is",
     titleAccent: "already listening.",
     sub: "Write one honest line tonight. See what Echo hears in it. The first conversation is free, and it stays between the two of you.",
-    primaryCta: { label: "Download EchoMe", href: "#download" },
+    primaryCta: { label: "Download Aftelo", href: "#download" },
     note: "iOS 16+ and Android 10+ · No account required to start",
   },
 
@@ -214,6 +214,6 @@ export const site = {
         ],
       },
     ],
-    legal: "© 2026 EchoMe. Made quietly, for the inner life.",
+    legal: "© 2026 Aftelo. Made quietly, for the inner life.",
   },
 } as const;
