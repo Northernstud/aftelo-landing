@@ -201,7 +201,7 @@ export const site = {
         id: "intention",
         icon: "feather",
         title: "Made with intention",
-        body: "We don't add features because we can. Every line of EchoMe was put there because someone on the team could feel the difference it made to a person's quiet Tuesday.",
+        body: "We don't add features because we can. Every line of Aftelo was put there because someone on the team could feel the difference it made to a person's quiet Tuesday.",
       },
       {
         id: "private",
@@ -222,7 +222,7 @@ export const site = {
     eyebrow: "Find your people",
     title: "The conversation",
     titleAccent: "keeps going.",
-    body: "EchoMe is quieter than most apps, but the people building and using it are anything but. Find the community in the place that suits you.",
+    body: "Aftelo is quieter than most apps, but the people building and using it are anything but. Find the community in the place that suits you.",
     channels: [
       {
         id: "discord",
@@ -243,7 +243,7 @@ export const site = {
         icon: "spark",
         title: "Twitter / X",
         body: "Product updates, small thoughts on inner life, and the occasional glimpse of what Echo said that made someone stop and breathe.",
-        cta: { label: "Follow @echome", href: "#" },
+        cta: { label: "Follow @aftelo", href: "#" },
       },
     ] as CommunityChannel[],
   },
@@ -252,7 +252,7 @@ export const site = {
     eyebrow: "Get in touch",
     title: "We read every word.",
     body: "There's no ticket system, no chatbot, no queue. Write to us and a person reads it — usually the same day.",
-    email: "hello@echome.app",
+    email: "hello@aftelo.app",
     links: [
       { label: "Twitter / X", href: "#" },
       { label: "Press kit", href: "#" },
