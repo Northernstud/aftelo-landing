@@ -7,6 +7,9 @@ import { Features } from "@/sections/Features";
 import { Showcase } from "@/sections/Showcase";
 import { EchoStory } from "@/sections/EchoStory";
 import { Stats } from "@/sections/Stats";
+import { AboutUs } from "@/sections/AboutUs";
+import { Community } from "@/sections/Community";
+import { Contact } from "@/sections/Contact";
 import { FinalCTA } from "@/sections/FinalCTA";
 
 /**
@@ -26,6 +29,9 @@ export default function App() {
         <Showcase />
         <EchoStory />
         <Stats />
+        <AboutUs />
+        <Community />
+        <Contact />
         <FinalCTA />
       </main>
       <Footer />

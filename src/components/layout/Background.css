@@ -74,6 +74,21 @@
   left: -120px;
 }
 
+/* extended lower page (~ about / community / contact, 380–460vh) */
+.bg__glow--extend-r {
+  width: 360px;
+  height: 360px;
+  top: 380vh;
+  right: -80px;
+}
+
+.bg__glow--extend-l {
+  width: 320px;
+  height: 320px;
+  top: 445vh;
+  left: -100px;
+}
+
 .bg__grain {
   position: absolute;
   inset: 0;

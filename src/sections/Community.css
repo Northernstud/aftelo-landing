@@ -1,0 +1,101 @@
+.community__panel {
+  position: relative;
+  overflow: hidden;
+  max-width: 820px;
+  margin-inline: auto;
+  padding: clamp(40px, 6vw, 68px) clamp(28px, 5vw, 56px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 20px;
+  border-radius: var(--r-hero);
+}
+
+.community__bloom {
+  position: absolute;
+  top: -40%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 460px;
+  height: 460px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(201, 83, 255, 0.2) 0%,
+    rgba(255, 0, 94, 0.12) 45%,
+    transparent 70%
+  );
+  filter: blur(40px);
+  pointer-events: none;
+}
+
+.community__title {
+  position: relative;
+  font-size: clamp(28px, 4.5vw, 44px);
+  font-weight: var(--w-hero);
+  line-height: 1.1;
+  letter-spacing: -0.8px;
+  color: var(--text-primary);
+  max-width: 20ch;
+}
+
+.community__body {
+  position: relative;
+  font-size: clamp(14px, 1.5vw, 16px);
+  line-height: 1.55;
+  color: var(--text-secondary);
+  max-width: 56ch;
+}
+
+.community__channels {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  width: 100%;
+  margin-top: 12px;
+  text-align: left;
+}
+
+/* Flat dark surface — no backdrop-filter, satisfies no-nested-glass rule. */
+.community__channel {
+  background-color: var(--surface-deep);
+  border: 1px solid var(--glass-border-light);
+  border-radius: var(--r-card);
+  padding: 24px 20px 22px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  transition: border-color var(--t-fast) var(--ease-out-cubic);
+}
+
+.community__channel:hover {
+  border-color: var(--glass-border-interactive);
+}
+
+.community__ch-title {
+  font-size: 16px;
+  font-weight: var(--w-title);
+  color: var(--text-primary);
+  line-height: 1.25;
+}
+
+.community__ch-body {
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--text-secondary);
+  flex: 1;
+}
+
+@media (max-width: 700px) {
+  .community__channels {
+    grid-template-columns: 1fr;
+  }
+
+  .community__panel {
+    align-items: flex-start;
+    text-align: left;
+  }
+}

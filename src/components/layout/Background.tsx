@@ -24,6 +24,10 @@ export function Background() {
       <span className="bg__glow bg__glow--purple-faint bg__glow--low-r" />
       <span className="bg__glow bg__glow--pink bg__glow--low-l" />
 
+      {/* extended lower page (~ about / community / contact) */}
+      <span className="bg__glow bg__glow--pink bg__glow--extend-r" />
+      <span className="bg__glow bg__glow--purple-faint bg__glow--extend-l" />
+
       {/* faint grain to keep the void from banding */}
       <span className="bg__grain" />
     </div>

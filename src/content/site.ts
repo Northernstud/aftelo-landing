@@ -42,6 +42,21 @@ export type IconName =
   | "lock"
   | "moon";
 
+export interface AboutValue {
+  id: string;
+  icon: IconName;
+  title: string;
+  body: string;
+}
+
+export interface CommunityChannel {
+  id: string;
+  icon: IconName;
+  title: string;
+  body: string;
+  cta: NavLink;
+}
+
 export const site = {
   brand: {
     name: "Aftelo",
@@ -54,6 +69,8 @@ export const site = {
       { label: "How it works", href: "#how" },
       { label: "Features", href: "#features" },
       { label: "Echo", href: "#echo" },
+      { label: "About", href: "#about" },
+      { label: "Community", href: "#community" },
       { label: "Numbers", href: "#numbers" },
     ] as NavLink[],
     cta: { label: "Get the app", href: "#download" },
@@ -175,6 +192,74 @@ export const site = {
     ] as Stat[],
   },
 
+  about: {
+    eyebrow: "Who we are",
+    title: "Built with intention, not appetite.",
+    sub: "We make tools for the inner life. Every decision starts with one question: does this make the person calmer, clearer, or more themselves? If the answer is no, we don't ship it.",
+    values: [
+      {
+        id: "intention",
+        icon: "feather",
+        title: "Made with intention",
+        body: "We don't add features because we can. Every line of EchoMe was put there because someone on the team could feel the difference it made to a person's quiet Tuesday.",
+      },
+      {
+        id: "private",
+        icon: "lock",
+        title: "Private by design",
+        body: "Your journal is not a dataset. Your words train nothing, profile nothing, and go nowhere. That's not a policy — it's the architecture.",
+      },
+      {
+        id: "noaddiction",
+        icon: "moon",
+        title: "No addiction by design",
+        body: "We removed every dark pattern that turns a healthy habit into a compulsion. No streaks, no guilt loops, no notifications engineered to hook you. The app is meant to be put down.",
+      },
+    ] as AboutValue[],
+  },
+
+  community: {
+    eyebrow: "Find your people",
+    title: "The conversation",
+    titleAccent: "keeps going.",
+    body: "EchoMe is quieter than most apps, but the people building and using it are anything but. Find the community in the place that suits you.",
+    channels: [
+      {
+        id: "discord",
+        icon: "waveform",
+        title: "Discord",
+        body: "Live threads on journaling, product feedback, and the occasional 2 a.m. conversation about what clarity actually feels like.",
+        cta: { label: "Join the server", href: "#" },
+      },
+      {
+        id: "newsletter",
+        icon: "feather",
+        title: "Newsletter",
+        body: "One email, every few weeks. Quiet reading on reflection, writing, and the craft of paying attention. No sales, no noise.",
+        cta: { label: "Subscribe", href: "#" },
+      },
+      {
+        id: "social",
+        icon: "spark",
+        title: "Twitter / X",
+        body: "Product updates, small thoughts on inner life, and the occasional glimpse of what Echo said that made someone stop and breathe.",
+        cta: { label: "Follow @echome", href: "#" },
+      },
+    ] as CommunityChannel[],
+  },
+
+  contact: {
+    eyebrow: "Get in touch",
+    title: "We read every word.",
+    body: "There's no ticket system, no chatbot, no queue. Write to us and a person reads it — usually the same day.",
+    email: "hello@echome.app",
+    links: [
+      { label: "Twitter / X", href: "#" },
+      { label: "Press kit", href: "#" },
+      { label: "Instagram", href: "#" },
+    ] as NavLink[],
+  },
+
   finalCta: {
     eyebrow: "Start tonight",
     title: "Your future self is",
@@ -198,10 +283,18 @@ export const site = {
       {
         heading: "Company",
         links: [
-          { label: "About", href: "#" },
+          { label: "About", href: "#about" },
           { label: "Manifesto", href: "#" },
           { label: "Careers", href: "#" },
           { label: "Press", href: "#" },
+        ],
+      },
+      {
+        heading: "Community",
+        links: [
+          { label: "Discord", href: "#community" },
+          { label: "Newsletter", href: "#community" },
+          { label: "Twitter / X", href: "#community" },
         ],
       },
       {
@@ -210,7 +303,7 @@ export const site = {
           { label: "Privacy", href: "#" },
           { label: "Security", href: "#" },
           { label: "Your data", href: "#" },
-          { label: "Contact", href: "#" },
+          { label: "Contact", href: "#contact" },
         ],
       },
     ],
