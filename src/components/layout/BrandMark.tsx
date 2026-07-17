@@ -3,14 +3,14 @@ interface BrandMarkProps {
 }
 
 /**
- * The Aftelo mark. Used in the nav and footer so the signature carries
+ * The Nuvyel mark. Used in the nav and footer so the signature carries
  * everywhere, small.
  */
 export function BrandMark({ size = 26 }: BrandMarkProps) {
   return (
     <img
-      src="/aftelo-logo.svg"
-      alt="Aftelo"
+      src="/nuvyel-logo.svg"
+      alt="Nuvyel"
       width={size}
       height={size}
       style={{ display: "block" }}

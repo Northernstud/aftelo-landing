@@ -57,11 +57,24 @@ export interface CommunityChannel {
   cta: NavLink;
 }
 
+export interface SelectOption {
+  value: string;
+  label: string;
+}
+
+export type SocialId = "discord" | "x";
+
+export interface SocialLink {
+  id: SocialId;
+  label: string;
+  href: string;
+}
+
 export const site = {
   brand: {
-    name: "Aftelo",
-    /** Used in the nav + footer mark. */
-    tagline: "A journal that listens back.",
+    name: "Nuvyel",
+    /** The slogan. Used in the nav + footer mark. */
+    tagline: "Where you become yourself.",
   },
 
   nav: {
@@ -69,11 +82,41 @@ export const site = {
       { label: "How it works", href: "#how" },
       { label: "Features", href: "#features" },
       { label: "Echo", href: "#echo" },
-      { label: "About", href: "#about" },
-      { label: "Community", href: "#community" },
-      { label: "Numbers", href: "#numbers" },
     ] as NavLink[],
-    cta: { label: "Get the app", href: "#download" },
+    cta: { label: "Become a tester", href: "#beta" },
+  },
+
+  beta: {
+    eyebrow: "Private beta",
+    /** `headlineAccent` renders as gradient text. */
+    headlineLead: "Become an",
+    headlineAccent: "Nuvyel tester.",
+    sub: "Leave your details and we'll send you an invite.",
+    note: "No spam. We email you personally.",
+    /** Paste your real Formspree endpoint here after creating a form:
+     *  https://formspree.io/f/XXXXXXXX  (see README / plan verification). */
+    formEndpoint: "https://formspree.io/f/XXXXXXXX",
+    fields: {
+      name: { label: "Your name", placeholder: "Name" },
+      email: { label: "Email", placeholder: "Email" },
+      device: { label: "Your phone" },
+      reason: {
+        label: "Why do you want in?",
+        placeholder: "Why you want in (optional)",
+      },
+    },
+    devices: [
+      { value: "", label: "Choose a platform…" },
+      { value: "ios", label: "iPhone (iOS)" },
+      { value: "android", label: "Android" },
+      { value: "both", label: "Both" },
+    ] as SelectOption[],
+    submitLabel: "Request an invite",
+    submittingLabel: "Sending…",
+    successTitle: "You're on the list.",
+    successBody: "We'll email you soon with your invite.",
+    errorBody:
+      "Something went wrong. Try again, or email hello@nuvyel.app.",
   },
 
   hero: {
@@ -81,8 +124,8 @@ export const site = {
     /** `accent` words are rendered as gradient text. */
     headlineLead: "Journal with your",
     headlineAccent: "future self.",
-    sub: "Aftelo reads what you write — your entries, your goals, your patterns — and talks it through with you. A calm voice grounded in your own words, like a conversation with a wiser version of you.",
-    primaryCta: { label: "Download Aftelo", href: "#download" },
+    sub: "Nuvyel reads what you write — your entries, your goals, your patterns — and talks it through with you. A calm voice grounded in your own words, like a conversation with a wiser version of you.",
+    primaryCta: { label: "Download Nuvyel", href: "#download" },
     secondaryCta: { label: "See how it works", href: "#how" },
     note: "Free to start · iOS & Android · Your entries stay yours",
   },
@@ -201,7 +244,7 @@ export const site = {
         id: "intention",
         icon: "feather",
         title: "Made with intention",
-        body: "We don't add features because we can. Every line of Aftelo was put there because someone on the team could feel the difference it made to a person's quiet Tuesday.",
+        body: "We don't add features because we can. Every line of Nuvyel was put there because someone on the team could feel the difference it made to a person's quiet Tuesday.",
       },
       {
         id: "private",
@@ -222,7 +265,7 @@ export const site = {
     eyebrow: "Find your people",
     title: "The conversation",
     titleAccent: "keeps going.",
-    body: "Aftelo is quieter than most apps, but the people building and using it are anything but. Find the community in the place that suits you.",
+    body: "Nuvyel is quieter than most apps, but the people building and using it are anything but. Find the community in the place that suits you.",
     channels: [
       {
         id: "discord",
@@ -243,7 +286,7 @@ export const site = {
         icon: "spark",
         title: "Twitter / X",
         body: "Product updates, small thoughts on inner life, and the occasional glimpse of what Echo said that made someone stop and breathe.",
-        cta: { label: "Follow @aftelo", href: "#" },
+        cta: { label: "Follow @nuvyel", href: "#" },
       },
     ] as CommunityChannel[],
   },
@@ -252,7 +295,7 @@ export const site = {
     eyebrow: "Get in touch",
     title: "We read every word.",
     body: "There's no ticket system, no chatbot, no queue. Write to us and a person reads it — usually the same day.",
-    email: "hello@aftelo.app",
+    email: "hello@nuvyel.app",
     links: [
       { label: "Twitter / X", href: "#" },
       { label: "Press kit", href: "#" },
@@ -265,48 +308,23 @@ export const site = {
     title: "Your future self is",
     titleAccent: "already listening.",
     sub: "Write one honest line tonight. See what Echo hears in it. The first conversation is free, and it stays between the two of you.",
-    primaryCta: { label: "Download Aftelo", href: "#download" },
+    primaryCta: { label: "Download Nuvyel", href: "#download" },
     note: "iOS 16+ and Android 10+ · No account required to start",
   },
 
   footer: {
-    columns: [
-      {
-        heading: "Product",
-        links: [
-          { label: "How it works", href: "#how" },
-          { label: "Features", href: "#features" },
-          { label: "Meet Echo", href: "#echo" },
-          { label: "Download", href: "#download" },
-        ],
-      },
-      {
-        heading: "Company",
-        links: [
-          { label: "About", href: "#about" },
-          { label: "Manifesto", href: "#" },
-          { label: "Careers", href: "#" },
-          { label: "Press", href: "#" },
-        ],
-      },
-      {
-        heading: "Community",
-        links: [
-          { label: "Discord", href: "#community" },
-          { label: "Newsletter", href: "#community" },
-          { label: "Twitter / X", href: "#community" },
-        ],
-      },
-      {
-        heading: "Trust",
-        links: [
-          { label: "Privacy", href: "#" },
-          { label: "Security", href: "#" },
-          { label: "Your data", href: "#" },
-          { label: "Contact", href: "#contact" },
-        ],
-      },
-    ],
-    legal: "© 2026 Aftelo. Made quietly, for the inner life.",
+    /** Quiet in-page nav. */
+    links: [
+      { label: "How it works", href: "#how" },
+      { label: "Features", href: "#features" },
+      { label: "Meet Echo", href: "#echo" },
+      { label: "Become a tester", href: "#beta" },
+    ] as NavLink[],
+    /** `id` selects the glyph in Footer. Replace `href` with your real URLs. */
+    socials: [
+      { id: "discord", label: "Discord", href: "#" },
+      { id: "x", label: "X", href: "#" },
+    ] as SocialLink[],
+    legal: "© 2026 Nuvyel",
   },
 } as const;

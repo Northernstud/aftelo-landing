@@ -1,7 +1,12 @@
 import { useRef } from "react";
-import { useFrame } from "@react-three/fiber";
+import { useFrame, useThree } from "@react-three/fiber";
 import { MeshTransmissionMaterial, Float } from "@react-three/drei";
 import * as THREE from "three";
+
+/** Natural extent the orb needs across (halo ring diameter ≈ 3.72 world units). */
+const ORB_SPAN = 3.72;
+/** Keep the orb to this fraction of the smaller visible dimension (leaves margin). */
+const FIT_FRACTION = 0.84;
 
 interface EchoOrbProps {
   /** Smoothed pointer position in [-1, 1]. */
@@ -22,6 +27,13 @@ interface EchoOrbProps {
 export function EchoOrb({ pointer, reduced }: EchoOrbProps) {
   const group = useRef<THREE.Group>(null);
   const core = useRef<THREE.Mesh>(null);
+
+  // Fit the orb (halo ring included) to whatever the canvas shape is, so it
+  // never crops on narrow/portrait windows. viewport is in world units at the
+  // focal plane and updates on resize, so this stays correct responsively.
+  const { viewport } = useThree();
+  const fit =
+    (Math.min(viewport.width, viewport.height) * FIT_FRACTION) / ORB_SPAN;
 
   useFrame((state, delta) => {
     if (!group.current) return;
@@ -48,13 +60,14 @@ export function EchoOrb({ pointer, reduced }: EchoOrbProps) {
   });
 
   return (
-    <Float
-      enabled={!reduced}
-      speed={1.1}
-      rotationIntensity={0.2}
-      floatIntensity={0.6}
-    >
-      <group ref={group}>
+    <group scale={fit}>
+      <Float
+        enabled={!reduced}
+        speed={1.1}
+        rotationIntensity={0.2}
+        floatIntensity={0.6}
+      >
+        <group ref={group}>
         {/* inner glowing core — the warm light behind the glass.
             Kept small + moderate so it reads as a glow contained inside
             the glass, never a solid neon ball (brand: no big vivid fill). */}
@@ -98,8 +111,9 @@ export function EchoOrb({ pointer, reduced }: EchoOrbProps) {
           <torusGeometry args={[1.85, 0.012, 16, 120]} />
           <meshBasicMaterial color="#C953FF" transparent opacity={0.35} toneMapped={false} />
         </mesh>
-      </group>
-    </Float>
+        </group>
+      </Float>
+    </group>
   );
 }
 

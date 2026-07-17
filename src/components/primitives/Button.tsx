@@ -1,10 +1,14 @@
-import type { AnchorHTMLAttributes, ReactNode } from "react";
+import type {
+  AnchorHTMLAttributes,
+  ButtonHTMLAttributes,
+  ReactNode,
+} from "react";
 import "./Button.css";
 
 type ButtonVariant = "solid" | "outline" | "inline";
 type ButtonSize = "md" | "lg";
 
-interface ButtonProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
+interface CommonProps {
   variant?: ButtonVariant;
   size?: ButtonSize;
   children: ReactNode;
@@ -12,9 +16,17 @@ interface ButtonProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
   icon?: ReactNode;
 }
 
+type AnchorProps = CommonProps &
+  AnchorHTMLAttributes<HTMLAnchorElement> & { as?: "a" };
+type NativeButtonProps = CommonProps &
+  ButtonHTMLAttributes<HTMLButtonElement> & { as: "button" };
+
+type ButtonProps = AnchorProps | NativeButtonProps;
+
 /**
- * The brand button patterns (§6). Rendered as an anchor since every CTA
- * here links to a section/store.
+ * The brand button patterns (§6). Renders as an anchor by default (every CTA
+ * links to a section/store); pass `as="button"` for real buttons — e.g. a
+ * form's submit — so form controls get the same look without an anchor.
  *
  * - solid:   high-emphasis gradient CTA, glow shadow (one per section).
  * - outline: glass-outline primary, gradient-text label.
@@ -23,27 +35,41 @@ interface ButtonProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
  * Primary CTAs (solid/outline) carry the asymmetric-corner signature
  * (bottom-right 14px / top-left 10px) — handled in CSS.
  */
-export function Button({
-  variant = "solid",
-  size = "md",
-  icon,
-  children,
-  className = "",
-  ...rest
-}: ButtonProps) {
-  const classes = [
-    "btn",
-    `btn--${variant}`,
-    `btn--${size}`,
-    className,
-  ]
+export function Button(props: ButtonProps) {
+  const {
+    variant = "solid",
+    size = "md",
+    icon,
+    children,
+    className = "",
+  } = props;
+
+  const classes = ["btn", `btn--${variant}`, `btn--${size}`, className]
     .filter(Boolean)
     .join(" ");
 
-  return (
-    <a className={classes} {...rest}>
+  const inner = (
+    <>
       {icon && <span className="btn__icon">{icon}</span>}
       <span className="btn__label">{children}</span>
+    </>
+  );
+
+  if (props.as === "button") {
+    const { as: _as, variant: _v, size: _s, icon: _i, children: _c, className: _cn, ...rest } =
+      props;
+    return (
+      <button className={classes} {...rest}>
+        {inner}
+      </button>
+    );
+  }
+
+  const { as: _as, variant: _v, size: _s, icon: _i, children: _c, className: _cn, ...rest } =
+    props;
+  return (
+    <a className={classes} {...rest}>
+      {inner}
     </a>
   );
 }

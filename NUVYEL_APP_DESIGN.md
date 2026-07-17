@@ -1,14 +1,14 @@
-# Aftelo — Landing Page Design Brief
+# Nuvyel — Landing Page Design Brief
 
-This document is the complete visual identity for **Aftelo**, translated for a marketing landing page. It contains every color, font rule, surface style, spacing value, and motion principle from the product so the website feels like a seamless extension of the app.
+This document is the complete visual identity for **Nuvyel**, translated for a marketing landing page. It contains every color, font rule, surface style, spacing value, and motion principle from the product so the website feels like a seamless extension of the app.
 
 Paste this whole file into a fresh session and build the landing page from it. **Do not invent new colors, fonts, or effects** — everything you need is here. When in doubt, choose the more restrained option.
 
 ---
 
-## 0. What Aftelo is (so the design carries the right feeling)
+## 0. What Nuvyel is (so the design carries the right feeling)
 
-Aftelo is a mental-wellness journaling app. The user journals daily, and an AI companion called **Echo** reads their entries and goals and talks with them — grounded in what they've actually written, like a conversation with a wiser future version of themselves.
+Nuvyel is a mental-wellness journaling app. The user journals daily, and an AI companion called **Echo** reads their entries and goals and talks with them — grounded in what they've actually written, like a conversation with a wiser future version of themselves.
 
 The feeling the design must evoke: **calm, intimate, premium, a little futuristic.** Think "personal operating system for your inner life" — not a clinical health app, not a loud consumer app. Quiet confidence. Deep space with a warm glow behind frosted glass.
 

@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nuvyel — logo animation</title>
+
+<!--
+  Nuvyel's logo drawing itself on, stroke by stroke.
+
+  Standalone: open it in a browser, drop it in a landing page, screen-record it
+  for a store listing. No build step, no dependencies, no network requests.
+
+  This is a PORT, not the source of truth. The app's version is:
+    lib/core/common/widgets/aftelo_logo_mark.dart                        (painter)
+    lib/features/onboarding/presentation/components/welcome_finale.dart  (timing)
+  and the geometry itself is assets/images/aftelo-logo.svg. Change one, change
+  the others — the constants under "Timing" below mirror the Dart ones exactly.
+
+  The only knob you need is TOTAL. Everything else is a fraction of it, so the
+  sequence keeps its shape at any speed.
+
+  Freeze a frame by appending a hash — handy for grabbing a still:
+    …/nuvyel_logo_animation.html#t=0.45   → 45% through
+    …/nuvyel_logo_animation.html#t=1      → the finished lockup
+
+  Two deliberate differences from the app:
+    · The wordmark uses a system monospace; OverpassMono isn't bundled here.
+    · The easing approximates Flutter's Curves.easeInOut / easeOutCubic. Close
+      enough to eyeball, not frame-identical.
+-->
+
+<style>
+  :root {
+    --bg:        #07070C;
+    --pink:      #FF005E;
+    --purple:    #C953FF;
+    --ink:       #F3F3F8;
+    --ink-muted: #9B9BA8;
+  }
+
+  html, body {
+    margin: 0;
+    height: 100%;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    overflow: hidden;
+  }
+
+  #stage {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+
+  /* Mirrors the Flutter widget's box model: a 260px square holding the bloom,
+     with the 190px mark centred inside it. */
+  #markbox {
+    position: relative;
+    width: 260px;
+    height: 260px;
+    display: grid;
+    place-items: center;
+  }
+
+  #glow {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    pointer-events: none;
+    background: radial-gradient(
+      circle,
+      rgba(201, 83, 255, 0.30) 0%,
+      rgba(255, 0, 94, 0.14) 50%,
+      transparent 70%
+    );
+  }
+
+  #mark { position: relative; width: 190px; height: 190px; display: block; }
+  #mark path { fill: none; stroke-linecap: round; }
+
+  #title {
+    margin-top: 40px;
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    background: linear-gradient(135deg, var(--purple), var(--pink));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  #sub {
+    margin-top: 12px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.6px;
+    color: var(--ink-muted);
+  }
+
+  #hint {
+    position: fixed;
+    bottom: 24px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 11px;
+    color: var(--ink-muted);
+    opacity: 0.45;
+  }
+</style>
+</head>
+
+<body>
+<div id="stage" title="Click to replay">
+  <div id="markbox">
+    <div id="glow"></div>
+
+    <!-- Geometry transcribed from assets/images/aftelo-logo.svg (512×512 viewBox). -->
+    <svg id="mark" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" aria-label="Nuvyel">
+      <defs>
+        <!-- userSpaceOnUse across the mark, not per-stroke: both arcs share one ramp. -->
+        <linearGradient id="brand" x1="96" y1="144" x2="416" y2="368" gradientUnits="userSpaceOnUse">
+          <stop stop-color="#C953FF"/>
+          <stop offset="1" stop-color="#FF005E"/>
+        </linearGradient>
+      </defs>
+
+      <path class="stroke" opacity="0.4" stroke="url(#brand)" stroke-width="37.3333"
+        d="M96 304C96 261.565 112.857 220.869 142.863 190.863C172.869 160.857 213.565 144 256 144C298.435 144 339.131 160.857 369.137 190.863C399.143 220.869 416 261.565 416 304"/>
+      <path class="stroke" stroke="url(#brand)" stroke-width="37.3333"
+        d="M160 304C168.734 285.966 182.372 270.756 199.351 260.114C216.329 249.472 235.962 243.828 256 243.828C276.038 243.828 295.671 249.472 312.649 260.114C329.628 270.756 343.266 285.966 352 304"/>
+      <path class="stroke" stroke="#F3F3F8" stroke-width="32" d="M64 307H448"/>
+      <path class="stroke" opacity="0.22" stroke="#F3F3F8" stroke-width="26.6667" d="M149.333 368H362.667"/>
+    </svg>
+  </div>
+
+  <!-- "Nuvyel" decodes out of noise; the words to its left stay still. -->
+  <div id="title">Welcome to <span id="word">Nuvyel</span></div>
+  <div id="sub">Where you become yourself.</div>
+  <div id="hint">click anywhere to replay</div>
+</div>
+
+<script>
+  // ── Timing. Mirrors welcome_finale.dart and aftelo_logo_mark.dart. ──────────
+  const TOTAL = 3000; // ms — the one knob; everything below is a fraction of it.
+
+  const GLOW   = [0.00, 0.25];
+  const LOGO   = [0.05, 0.50]; // the window the mark draws across
+  const TITLE  = [0.52, 0.62]; // the line fades in…
+  const DECODE = [0.52, 0.95]; // …while "Nuvyel" is still resolving beside it
+  const SUB    = [0.88, 1.00];
+
+  // Mirrors lib/core/utils/scramble_text.dart.
+  const WORD   = 'Nuvyel';
+  const TICKS  = 36;
+  const GLYPHS =
+    'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789#%&$@?!*<>/';
+
+  // Each stroke's slice of the mark's own 0→1 progress. The last lands exactly
+  // at 1.0, so the mark completes precisely as the wordmark begins.
+  const STROKES = [
+    [0.00, 0.57], // outer arc
+    [0.21, 0.71], // inner arc
+    [0.50, 0.89], // baseline
+    [0.71, 1.00], // underline
+  ];
+
+  const clamp01      = t => Math.min(1, Math.max(0, t));
+  const easeOutCubic = t => 1 - Math.pow(1 - t, 3);
+  const easeInOut    = t => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+
+  /// Maps overall progress onto one phase's window, eased. Clamps outside it.
+  const seg = (v, [a, b], ease = easeOutCubic) => ease(clamp01((v - a) / (b - a)));
+
+  /// One frame of the decode reveal. Character i locks in permanently once
+  /// progress passes (i + 1) / length, so the word settles left to right and the
+  /// last letter lands exactly at 1.0. Deterministic: the same progress always
+  /// yields the same frame, so replaying is stable.
+  function scrambleFrame(text, progress) {
+    const p = clamp01(progress);
+    if (p >= 1) return text;
+
+    const tick = Math.floor(p * TICKS);
+    let out = '';
+    for (let i = 0; i < text.length; i++) {
+      if (text[i] === ' ') { out += ' '; continue; }
+      if (p >= (i + 1) / text.length) { out += text[i]; continue; }
+      // Cheap deterministic hash of (position, tick) → glyph. Every step is
+      // forced back to unsigned: `^` yields a *signed* int32 in JS, and a
+      // negative modulo would index off the end of GLYPHS and read undefined.
+      let h = (0x811c9dc5 ^ (i * 73856093) ^ (tick * 19349663)) >>> 0;
+      h = (h ^ (h >>> 13)) >>> 0;
+      h = Math.imul(h, 0x5bd1e995) >>> 0;
+      h = (h ^ (h >>> 15)) >>> 0;
+      out += GLYPHS[h % GLYPHS.length];
+    }
+    return out;
+  }
+
+  const paths = [...document.querySelectorAll('#mark .stroke')];
+  const glow  = document.getElementById('glow');
+  const title = document.getElementById('title');
+  const word  = document.getElementById('word');
+  const sub   = document.getElementById('sub');
+
+  // Prime each stroke: dash it to its own length, then push the dash out of view.
+  const lengths = paths.map(p => p.getTotalLength());
+  paths.forEach((p, i) => { p.style.strokeDasharray = lengths[i]; });
+
+  function frame(v) {
+    const logo = clamp01((v - LOGO[0]) / (LOGO[1] - LOGO[0])); // linear on purpose
+
+    paths.forEach((p, i) => {
+      const [a, b] = STROKES[i];
+      const t = easeInOut(clamp01((logo - a) / (b - a)));
+      // A round cap on a zero-length dash paints a dot. Nothing means nothing.
+      p.style.visibility = t <= 0 ? 'hidden' : 'visible';
+      p.style.strokeDashoffset = lengths[i] * (1 - t);
+    });
+
+    const g = seg(v, GLOW);
+    glow.style.opacity = g;
+    glow.style.transform = `scale(${0.5 + 0.5 * g})`;
+
+    const ti = seg(v, TITLE);
+    title.style.opacity = ti;
+    title.style.transform = `translateY(${18 * (1 - ti)}px)`;
+
+    // Linear, so the letters settle at an even cadence rather than bunching.
+    word.textContent = scrambleFrame(WORD, seg(v, DECODE, t => t));
+
+    sub.style.opacity = seg(v, SUB);
+  }
+
+  let raf = null;
+
+  function play() {
+    cancelAnimationFrame(raf);
+
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      frame(1);
+      return;
+    }
+
+    let start = null;
+    raf = requestAnimationFrame(function step(now) {
+      if (start === null) start = now;
+      const v = clamp01((now - start) / TOTAL);
+      frame(v);
+      if (v < 1) raf = requestAnimationFrame(step);
+    });
+  }
+
+  // #t=0.45 freezes a single frame instead of playing. Useful for stills, and
+  // for eyeballing a phase boundary without trying to pause a 3.6s animation.
+  const pinned = /^#t=([0-9.]+)$/.exec(location.hash);
+
+  if (pinned) {
+    frame(clamp01(parseFloat(pinned[1])));
+    document.getElementById('hint').textContent = `frozen at t=${pinned[1]}`;
+  } else {
+    frame(0);
+    play();
+    document.getElementById('stage').addEventListener('click', play);
+  }
+</script>
+</body>
+</html>

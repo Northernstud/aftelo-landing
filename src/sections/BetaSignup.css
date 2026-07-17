@@ -1,0 +1,231 @@
+.beta {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  padding-top: 140px;
+  padding-bottom: 96px;
+  overflow: hidden;
+}
+
+.beta__inner {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  align-items: center;
+  gap: clamp(24px, 5vw, 72px);
+  width: 100%;
+}
+
+.beta__copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 18px;
+  max-width: 560px;
+}
+
+.beta__title {
+  font-size: clamp(38px, 5.6vw, 64px);
+  font-weight: var(--w-hero);
+  line-height: 1.02;
+  letter-spacing: -1.6px;
+  color: var(--text-primary);
+}
+
+.beta__sub {
+  max-width: 40ch;
+  font-size: clamp(16px, 1.7vw, 18px);
+  font-weight: var(--w-regular);
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+
+/* --- form card (the single frosted surface — inputs stay flat inside it) --- */
+.beta__card {
+  width: 100%;
+  max-width: 440px;
+  margin-top: 8px;
+  padding: 22px;
+  border-radius: var(--r-card);
+  background-color: var(--glass-fill-card);
+  border: 1px solid var(--glass-border-card);
+  box-shadow: var(--shadow-card);
+  -webkit-backdrop-filter: blur(var(--blur-card));
+  backdrop-filter: blur(var(--blur-card));
+}
+
+.beta__form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* two fields side by side (name + device) */
+.beta__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.beta__field {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+/* labels are visually hidden — placeholders carry the prompt, cleanly */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.beta__input {
+  width: 100%;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: var(--w-regular);
+  color: var(--text-primary);
+  background-color: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--glass-border-light);
+  border-radius: var(--r-input);
+  padding: 13px 15px;
+  transition: border-color var(--t-fast) var(--ease-out-cubic),
+    background-color var(--t-fast) var(--ease-out-cubic),
+    box-shadow var(--t-fast) var(--ease-out-cubic);
+}
+
+.beta__input::placeholder {
+  color: var(--text-muted);
+}
+
+.beta__input:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.beta__input:focus {
+  outline: none;
+  background-color: rgba(255, 255, 255, 0.06);
+  border-color: var(--glass-border-interactive);
+  box-shadow: 0 0 0 3px var(--glow-purple-faint);
+}
+
+.beta__select {
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+  /* chevron */
+  background-image: linear-gradient(45deg, transparent 50%, var(--text-muted) 50%),
+    linear-gradient(135deg, var(--text-muted) 50%, transparent 50%);
+  background-position: calc(100% - 20px) center, calc(100% - 15px) center;
+  background-size: 5px 5px, 5px 5px;
+  background-repeat: no-repeat;
+  padding-right: 38px;
+}
+
+/* Native dropdown list sits on the OS, not our dark glass — force legible fill. */
+.beta__select option {
+  background-color: var(--surface-deep);
+  color: var(--text-primary);
+}
+
+.beta__textarea {
+  resize: vertical;
+  min-height: 84px;
+  line-height: 1.5;
+}
+
+.beta__submit {
+  margin-top: 4px;
+  width: 100%;
+}
+.beta__submit:disabled {
+  opacity: 0.65;
+  cursor: default;
+}
+
+.beta__error {
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--danger);
+}
+
+.beta__note {
+  font-size: 11px;
+  font-weight: var(--w-medium);
+  letter-spacing: 0.5px;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+/* --- success state (shares .beta__card) --- */
+.beta__success {
+  padding: 26px;
+}
+.beta__success-title {
+  font-size: clamp(22px, 3vw, 28px);
+  font-weight: var(--w-hero);
+  letter-spacing: -0.5px;
+}
+.beta__success-body {
+  margin-top: 10px;
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--text-secondary);
+}
+
+/* --- the orb stage --- */
+/* Centred (not stretched) with a landscape-ish box so the orb's halo never
+   crops — the tall signup form would otherwise pull this column tall + narrow. */
+.beta__visual {
+  position: relative;
+  align-self: center;
+  width: 100%;
+  height: clamp(440px, 44vw, 560px);
+}
+.beta__visual-fallback {
+  position: absolute;
+  inset: 0;
+}
+
+/* --- responsive --- */
+@media (max-width: 920px) {
+  .beta {
+    padding-top: 116px;
+  }
+  .beta__inner {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .beta__copy {
+    order: 2;
+    max-width: 640px;
+  }
+  .beta__card {
+    max-width: none;
+  }
+  .beta__visual {
+    order: 1;
+    height: 340px;
+    width: 100%;
+    max-width: 400px;
+    margin-inline: auto;
+  }
+}
+
+@media (max-width: 600px) {
+  .beta__visual {
+    height: 280px;
+  }
+  .beta__row {
+    grid-template-columns: 1fr;
+  }
+}

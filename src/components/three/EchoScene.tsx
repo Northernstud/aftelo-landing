@@ -25,7 +25,7 @@ export function EchoScene() {
         className="echo-scene__canvas"
         dpr={[1, 1.75]}
         gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
-        camera={{ position: [0, 0, 6], fov: 38 }}
+        camera={{ position: [0, 0, 7.4], fov: 38 }}
         frameloop={reduced ? "demand" : "always"}
       >
         <ambientLight intensity={0.5} />

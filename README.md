@@ -1,10 +1,10 @@
 <div align="center">
 
-# Aftelo — Landing Page
+# Nuvyel — Landing Page
 
 **A journal that listens back.**
 
-Marketing site for [Aftelo](#about-aftelo) — a mental-wellness journaling app whose
+Marketing site for [Nuvyel](#about-nuvyel) — a mental-wellness journaling app whose
 AI companion *Echo* reads your entries and talks them through with you.
 
 Built with Vite · React · TypeScript · React-Three-Fiber
@@ -15,7 +15,7 @@ Built with Vite · React · TypeScript · React-Three-Fiber
 
 ## Table of contents
 
-- [About Aftelo](#about-aftelo)
+- [About Nuvyel](#about-nuvyel)
 - [Design philosophy](#design-philosophy)
 - [Highlights](#highlights)
 - [Tech stack](#tech-stack)
@@ -34,9 +34,9 @@ Built with Vite · React · TypeScript · React-Three-Fiber
 
 ---
 
-## About Aftelo
+## About Nuvyel
 
-Aftelo is a mental-wellness journaling app for iOS and Android. You journal daily,
+Nuvyel is a mental-wellness journaling app for iOS and Android. You journal daily,
 and an AI companion called **Echo** reads your entries and goals and talks with you —
 grounded in what you've actually written, like a conversation with a wiser future
 version of yourself.
@@ -47,7 +47,7 @@ frosted glass.
 
 This repository is the **marketing landing page**. It is a faithful extension of the
 app's visual identity so the web feels like the same product. The complete brand
-specification lives in [`AFTELO_APP_DESIGN.md`](./AFTELO_APP_DESIGN.md) and is treated
+specification lives in [`NUVYEL_APP_DESIGN.md`](./NUVYEL_APP_DESIGN.md) and is treated
 as the source of truth for every color, font, surface, and motion rule.
 
 ---
@@ -153,8 +153,8 @@ content (data)  →  primitives (design system)  →  sections (features)  →  
 ```
 
 ```
-aftelo-landing/
-├── AFTELO_APP_DESIGN.md         # The brand specification (source of truth)
+nuvyel-landing/
+├── NUVYEL_APP_DESIGN.md         # The brand specification (source of truth)
 ├── index.html                   # HTML shell, font preconnect, meta
 ├── package.json
 ├── vite.config.ts               # Vite + React plugin + "@/" path alias
@@ -191,7 +191,7 @@ aftelo-landing/
     │   │   ├── Background.tsx       # The "void with glow" backdrop
     │   │   ├── Nav.tsx              # Pinned glass nav (+ mobile menu)
     │   │   ├── Footer.tsx           # Understated footer
-    │   │   └── BrandMark.tsx        # The Aftelo logo mark (SVG)
+    │   │   └── BrandMark.tsx        # The Nuvyel logo mark (SVG)
     │   │
     │   ├── three/               # The 3D signature
     │   │   ├── EchoScene.tsx        # Canvas + lighting (Lightformers)
@@ -375,7 +375,7 @@ Publish directory: dist
 
 **GitHub Pages / any static host** — upload the contents of `dist/` after building.
 
-> If you deploy under a sub-path (e.g. `example.com/aftelo/`), set Vite's
+> If you deploy under a sub-path (e.g. `example.com/nuvyel/`), set Vite's
 > [`base`](https://vitejs.dev/config/shared-options.html#base) option in
 > `vite.config.ts` accordingly.
 
@@ -392,4 +392,4 @@ it, the hero still renders fully — only the orb is absent.
 
 ## License
 
-Proprietary — © 2026 Aftelo. All rights reserved.
+Proprietary — © 2026 Nuvyel. All rights reserved.
